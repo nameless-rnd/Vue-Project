@@ -1,10 +1,16 @@
 <template>
   <v-container>
-    <div class="text-center">
-      <h2>เหล่าฮีโร่อีกมากมาย!</h2>
-    </div>
-    <v-card width="1200" class="col-md">
-      <v-tabs v-model="tab" background-color="white" color="deep-purple accent-4" right>
+    <v-card-title class="text-center justify-center py-6">
+      <h1 class="font-weight-bold display-3 basil--text">ฮีโร่ทั้งหมด</h1>
+    </v-card-title>
+    <v-container>
+      <div class="text-center">
+        <h2 class="red--text font-weight-black">เหล่าฮีโร่อีกมากมาย!</h2>
+      </div>
+    </v-container>
+
+    <v-card class="col-md" style="background: #455A64">
+      <v-tabs v-model="tab" background-color="#455A64" color="white" right>
         <v-tab v-for="tabname in tabnames" :key="tabname.text">
           <v-tab-item-avatar style="margin-right: 5px;">
             <v-img :src="tabname.avatar" max-width="15"></v-img>
@@ -19,20 +25,23 @@
         <v-tab-item v-for="tabname in tabnames" :key="tabname">
           <v-flex shrink display-1></v-flex>
           <!------------------------------------------------------------------------>
-          <!-------------------- หน้า All Heroes --------------------------------------->
+          <!-------------------- หน้า All Heroes ------------------------------------>
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'All Heroes'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
                 <router-link
                   :to="{  name: 'character-details',
-                        params: { character: character, id: character.id }
+                          params: { character: character, id: character.id }
                       }"
                 >
-                  <v-btn tile class="text-center ma-2" title width="150">
-                    <v-card-btn>
-                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
-                    </v-card-btn>
+                  <v-btn tile class="text-center ma-2" width="150">
+                    <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
                     <v-card-btn>{{character.name}}</v-card-btn>
                   </v-btn>
                 </router-link>
@@ -43,20 +52,30 @@
           <!-------------------- หน้า Assasin --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Assassin'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Assassin' || character.type2_heroes === 'Assassin'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                          params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Assassin'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
@@ -64,20 +83,30 @@
           <!-------------------- หน้า Fighter --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Fighter'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Fighter' || character.type2_heroes === 'Fighter'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                          params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Fighter'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
@@ -85,20 +114,30 @@
           <!----------------------- หน้า Mage --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Mage'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Mage' || character.type2_heroes === 'Mage'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                          params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Mage'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
@@ -106,20 +145,30 @@
           <!----------------------- หน้า Carry -------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Carry'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Carry' || character.type2_heroes === 'Carry'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                          params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Carry'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
@@ -127,20 +176,30 @@
           <!----------------------- หน้า Tank --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Tank'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Tank' || character.type2_heroes === 'Tank'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                          params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Tank'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
@@ -148,27 +207,38 @@
           <!----------------------- หน้า Support ------------------------------------>
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Support'">
-            <v-row justify="center">
-              <div style="margin-left: 25px;" v-for="(character, index) in characters" :key="index">
-                <v-btn
-                  tile
-                  class="text-center ma-2"
-                  title
-                  width="150"
-                  v-if="character.type1_heroes === 'Support' || character.type2_heroes === 'Support'"
-                >
-                  <v-card-btn>
-                    <v-img :src="character.img_small" max-width="36" style="margin-right: 25px;"></v-img>
-                  </v-card-btn>
-                  <v-card-btn>{{character.name}}</v-card-btn>
-                </v-btn>
+            <v-container style="background: #455A64"></v-container>
+            <v-row style="background: #455A64">
+              <div
+                style="col: 30px; margin-left: 25px;"
+                v-for="(character, index) in characters"
+                :key="index"
+              >
+                <div v-for="(characters, index) in character.types" :key="index">
+                  <router-link
+                    :to="{  name: 'character-details',
+                            params: { character: character, id: character.id }
+                      }"
+                  >
+                    <v-btn
+                      tile
+                      class="text-center ma-2"
+                      width="150"
+                      v-if="characters.typeHeroes === 'Support'"
+                    >
+                      <v-img :src="character.img_small" max-width="36" style="margin-right: 15px;"></v-img>
+                      <v-card-btn>{{character.name}}</v-card-btn>
+                    </v-btn>
+                  </router-link>
+                </div>
               </div>
             </v-row>
           </v-flex>
         </v-tab-item>
       </v-tabs-items>
+
       <div class="col-md-6">
-          <router-view @refreshData="refreshList"></router-view>
+        <router-view @refreshData="refreshList"></router-view>
       </div>
     </v-card>
   </v-container>
@@ -181,7 +251,7 @@ export default {
     return {
       tab: null,
       tabnames: [
-        { avatar: "", text: "All Heroes" },
+        { text: "All Heroes" },
         { avatar: "assasin.png", text: "Assassin" },
         { avatar: "fighter.png", text: "Fighter" },
         { avatar: "mage.png", text: "Mage" },

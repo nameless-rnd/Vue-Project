@@ -1,45 +1,42 @@
-<template>
+<template >
   <div v-if="this.character">
     <v-container class="application">
-      <div class="text-center">
-        <h2>{{this.character.name}}</h2>
-      </div>
+      <v-container>
+        <v-card-title class="text-center justify-center py-6">
+          <h1 class="font-weight-bold display-3 basil--text">{{character.name}}</h1>
+        </v-card-title>
+      </v-container>
+
       <v-row justify="space-around">
         <v-col cols="5" justify="center">
           <div class="show-desktop"></div>
-            <v-img :src="character.img_big" aspect-ratio="1"></v-img>
+          <v-img :src="character.img_big" aspect-ratio="1"></v-img>
         </v-col>
         <v-col cols="5" justify="center">
-          <v-card width="400" class="col-md" style="background: #263238;">
-            <div>
-              <v-card
-                width="400"
-                outlined
-                justify="center"
-                target="_self"
-                style="background: #37474F;"
-              >
-                <v-list-item class="col-md-12" two-line>
-                  <v-img style="margin-left: 25px;" :src="character.img_small" max-width="50"></v-img>
-                  <span
-                    justify="center"
-                    style="margin-left: 25px;"
-                    class="font-weight-black"
-                    :class="`${bgColor}--text`"
-                  >{{character.type1_heroes}}</span>
-                  <span>
-                    <v-img :src="character.img_type1_heroes" max-width="20" right></v-img>
-                  </span>
-                  <span
-                    justify="center"
-                    style="margin-left: 25px;"
-                    class="font-weight-black"
-                    :class="`${bgColor}--text`"
-                  >{{character.type2_heroes}}</span>
-                  <span>
-                    <v-img :src="character.img_type1_heroes" max-width="20" right></v-img>
-                  </span>
-                </v-list-item>
+          <v-card height="500" class="col-md" style="background: #263238;">
+            <div class="col-md">
+              <v-card class="col-md" outlined justify="center" style="background: #37474F;">
+                <v-row style="margin-left: 25px;">
+                  <v-list-item class="col-md-12" two-line>
+                    <v-img style="margin-right: 35px;" :src="character.img_small" max-width="50"></v-img>
+                    <v-row v-for="(characters, index) in character.types" :key="index">
+                      <span
+                        justify="center"
+                        style="margin-left: 25px;"
+                        class="font-weight-black"
+                        :class="`red--text`"
+                      >{{characters.typeHeroes}}</span>
+                      <span>
+                        <v-img
+                          :src="character.img_type1_heroes"
+                          max-width="15"
+                          right
+                          style="margin-left: 5px;"
+                        ></v-img>
+                      </span>
+                    </v-row>
+                  </v-list-item>
+                </v-row>
               </v-card>
               <!--สกิลตัวตัว-->
               <v-list-item three-line>
@@ -49,9 +46,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -64,9 +61,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_1_1}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_1_1}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_1_1}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -78,9 +75,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_1_2}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_1_2}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_1_2}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -93,9 +90,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_2_1}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_2_1}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_2_1}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -107,9 +104,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_2_2}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_2_2}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_2_2}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -122,9 +119,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_3_1}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_3_1}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_3_1}}</p>
                 </v-list-item-content>
               </v-list-item>
 
@@ -135,9 +132,9 @@
                 <v-list-item-content>
                   <v-list-item-title
                     class="font-weight-black"
-                    :class="`${bgColor}--text`"
+                    :class="`red--text`"
                   >{{character.name_skill_3_2}}</v-list-item-title>
-                  <p class="text-caption" :class="`${fgColor}--text`">{{character.detail_skill_3_2}}</p>
+                  <p class="text-caption" :class="`white--text`">{{character.detail_skill_3_2}}</p>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
@@ -152,8 +149,5 @@
 export default {
   name: "character",
   props: ["character"],
-
-
-
 };
 </script>

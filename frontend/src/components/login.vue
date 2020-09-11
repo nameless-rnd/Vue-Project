@@ -1,8 +1,9 @@
 <template>
   <v-container class="application">
+    <v-container></v-container>
     <v-row align="center" justify="center" >
       <v-col cols="20" sm="8" md="8" class>
-        <v-card class="evelation-12 card" style="background: #616161;">
+        <v-card class="evelation-12 card" style="background: #616161">
           <v-window>
             <!--SignIn-->
             <v-window-item>
@@ -99,7 +100,7 @@ export default {
             this.$alert(
               "Username or Password Incorrect",
               "Error",
-              "warning"
+              "error"
             )
           }
         });

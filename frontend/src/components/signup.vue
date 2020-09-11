@@ -22,13 +22,7 @@
                   <v-card-text>
                     <h1 class="text-center display-1 mb-10" :class="`${bgColor}--text`">Sign Up</h1>
                     <v-form class="signup-form-form" @submit.prevent="signup">
-                      <v-text-field
-                        id="name"
-                        v-model="name"
-                        label="Name"
-                        type="text"
-                        solo
-                      />
+                      <v-text-field id="name" v-model="name" label="Name" type="text" solo />
                       <v-text-field
                         id="username"
                         v-model="username"
@@ -54,7 +48,7 @@
                         solo
                       />
                       <div class="text-center mt-6">
-                        <v-btn type="submit" large :color="bgColor" dark @click="Check">Sign Up</v-btn>
+                        <v-btn type="submit" large :color="bgColor" dark @click="saveSignup">Sign Up</v-btn>
                       </div>
                     </v-form>
                   </v-card-text>
@@ -70,19 +64,16 @@
 
 <script>
 import http from "../http-common";
-//import { version, description } from "vue-simple-alert/package.json";
 
 export default {
   name: "member",
   data() {
     return {
-      name: "",
-      username: "",
-      password: "",
-      email: "",
+      name: null,
+      username: null,
+      password: null,
+      email: null,
       valid: false,
-      checkSave: false,
-      alwayselect: false,
     };
   },
   props: {
@@ -101,21 +92,28 @@ export default {
   },
 
   methods: {
-    Check() {
-      http
-        .post(
-          "/login/" +
-            this.name +
-            "/" +
-            this.username +
-            "/" +
-            this.password +
-            "/" +
-            this.email +
-            "/" ,
-          this.login,
-        )
-    }
+    saveSignup() {
+      if ( this.name != null && this.username != null && this.password != null && this.email != null
+      ){
+        http
+          .post(
+            "/login/" +
+              this.name +
+              "/" +
+              this.username +
+              "/" +
+              this.password +
+              "/" +
+              this.email +
+              "/",
+            this.login
+          );
+        this.$alert("Signup Success", "Thank You", "success");
+        this.$router.push("/");
+      } else {
+        this.$alert("Please enter all your information", "Error", "error");
+      }
+    },
   },
 };
 </script>

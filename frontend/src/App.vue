@@ -1,8 +1,8 @@
 <template>
-  <v-app app style="background: #222222">
-    <v-card class="overflow-hidden">
+  <v-app app style="background: #222222" class="overflow-hidden">
       <v-app-bar
         app
+        absolute
         dark
         hide-on-scroll
         prominent
@@ -17,9 +17,8 @@
         <v-spacer></v-spacer>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
-    </v-card>
     <v-card>
-      <v-navigation-drawer v-model="drawer" absolute temporary app right src="img1.jpg">
+      <v-navigation-drawer v-model="drawer" absolute temporary app right src="..\public\img1.jpg">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
@@ -63,14 +62,13 @@
         </template>
       </v-navigation-drawer>
     </v-card>
-
-    <v-content>
-      <router-view />
+    <v-content >
+      <router-view  />
     </v-content>
-
+    
     <v-footer dark padless>
       <v-col class="text-center font-weight-light" cols="12">
-        {{ new Date().getFullYear() }} —
+        &copy;{{ new Date().getFullYear() }} —
         <strong>Nattapol Panta B6015107</strong>
       </v-col>
     </v-footer>
@@ -89,10 +87,10 @@ export default {
       links: [
         { avatar: "..\\home.png", text: "HOME", route: "/home" },
         { avatar: "..\\hero.png", text: "HEROES", route: "/characterList" },
-        { avatar: "..\\rune.png", text: "RUNE", route: "/RUNE" },
-        { avatar: "..\\enchanment.png", text: "ENCHANTMENT", route: "/ENCHANTMENT"},
-        { avatar: "..\\item.png", text: "ITEM", route: "/ITEM" },
-        { avatar: "..\\mode.png", text: "MODE",  route: "/MODE" },
+        { avatar: "..\\rune.png", text: "RUNE", route: "/rune" },
+        { avatar: "..\\enchanment.png", text: "ENCHANTMENT", route: "/enchantment"},
+        { avatar: "..\\item.png", text: "ITEM", route: "/item" },
+        { avatar: "..\\mode.png", text: "MODE",  route: "/mode" },
         { text: "SKIN",  route: "/SKIN" },
       ],
     };
@@ -125,3 +123,10 @@ export default {
   },
 };
 </script>
+<style>
+/* Helper classes */
+.basil--text {
+  color: #356859 !important;
+}
+
+</style>

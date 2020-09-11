@@ -1,9 +1,14 @@
 package com.project.backend.Character.Controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.backend.Character.Entity.Character;
 import com.project.backend.Character.Repository.CharacterRepository;
+import com.project.backend.Character.Entity.Skill;
+import com.project.backend.Character.Repository.SkillRepository;
+import com.project.backend.Character.Entity.TypeHeroes;
+import com.project.backend.Character.Repository.TypeHeroesRepository;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,6 +31,17 @@ public class CharacterController {
   @Autowired
   private final CharacterRepository characterRepository;
 
+  @Autowired
+  private SkillRepository skillRepository;
+
+  @Autowired
+  private TypeHeroesRepository typeHeroesRepository;
+
+  /*@PostMapping("/placeOrder")
+  public Character placeOrderRequest(@RequestBody OrderRequest request) {
+    characterRepository.save(request.getCharacter());
+  }*/
+
   CharacterController(CharacterRepository characterRepository) {
     this.characterRepository = characterRepository;
   }
@@ -35,44 +51,7 @@ public class CharacterController {
     return characterRepository.findAll().stream().collect(Collectors.toList());
   }
 
-  /*@GetMapping("/character/{name}")
-  public Collection<Character> getCharacterByName(
-    @PathVariable("name") String name
-  ) {
-    return characterRepository.findCharacterByName(name);
-  }
-
-  @GetMapping("/character/{type_heroes}")
-  public Collection<Character> getNameByType(
-    @PathVariable("type_heroes") String type_heroes
-  ) {
-    return characterRepository.findNameByType(type_heroes);
-  }*/
-
-  @PutMapping("/character/{id}")
-  public ResponseEntity<Character> updateCharacter(
-    @PathVariable("id") long id,
-    @RequestBody Character character
-  ) {
-    System.out.println("Update Customer with ID = " + id + "...");
-
-    Optional<Character> characterData = characterRepository.findById(id);
-
-    if (characterData.isPresent()) {
-      Character _character = characterData.get();
-      _character.setName(character.getName());
-      _character.setImg_small(character.getImg_small());
-      _character.setImg_big(character.getImg_big());
-
-      return new ResponseEntity<>(
-        characterRepository.save(_character),
-        HttpStatus.OK
-      );
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
-  @PostMapping(
+  /*@PostMapping(
     "/character/{name}/{img_small}/{img_big}/{img_skill}/{name_skill}/{detail_skill}/{img_skill_1_1}/{name_skill_1_1}/{detail_skill_1_1}/{img_skill_1_2}/{name_skill_1_2}/{detail_skill_1_2}/{img_skill_2_1}/{name_skill_2_1}/{detail_skill_2_1}/{img_skill_2_2}/{name_skill_2_2}/{detail_skill_2_2}/{img_skill_3_1}/{name_skill_3_1}/{detail_skill_3_1}/{img_skill_3_2}/{name_skill_3_2}/{detail_skill_3_2}/{type_heroes1}/{img_type_heroes1}/{type_heroes2}/{img_type_heroes2}"
   )
   public Character newCharacter(
@@ -141,5 +120,5 @@ public class CharacterController {
     newCharacter.setImg_type2_heroes(img_type2_heroes);
 
     return characterRepository.save(newCharacter);
-  }
+  }*/
 }

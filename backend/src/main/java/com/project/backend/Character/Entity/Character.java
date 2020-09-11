@@ -1,5 +1,9 @@
 package com.project.backend.Character.Entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import lombok.*;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.*;
+
 
 @Data
 @Entity
@@ -21,10 +29,7 @@ import lombok.*;
 public class Character {
   @Id
   @SequenceGenerator(name = "Character_seq", sequenceName = "Character_seq")
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "Character_seq"
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Character_seq")
   @Column(name = "Character_id", unique = true, nullable = true)
   private Long id;
 
@@ -40,97 +45,8 @@ public class Character {
   @Column(name = "IMG_BIG")
   private String img_big;
 
-  //============== Skill ติดตัว  ===========================
-  @NotNull
-  @Column(name = "IMG_SKILL")
-  private String img_skill;
-
-  @NotNull
-  @Column(name = "NAME_SKILL")
-  private String name_skill;
-
-  @NotNull
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL")
-  private String detail_skill;
-
-  //============== Skill 1.1  ============================
-  @NotNull
-  @Column(name = "IMG_SKILL_1_1")
-  private String img_skill_1_1;
-
-  @NotNull
-  @Column(name = "NAME_SKILL_1_1")
-  private String name_skill_1_1;
-
-  @NotNull
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_1_1")
-  private String detail_skill_1_1;
-
-  //============== Skill 1.2 (ถ้ามี) =======================
-  @Column(name = "IMG_SKILL_1_2")
-  private String img_skill_1_2;
-
-  @Column(name = "NAME_SKILL_1_2")
-  private String name_skill_1_2;
-
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_1_2")
-  private String detail_skill_1_2;
-
-  //============== Skill 2.1  ============================
-  @NotNull
-  @Column(name = "IMG_SKILL_2_1")
-  private String img_skill_2_1;
-
-  @NotNull
-  @Column(name = "NAME_SKILL_2_1")
-  private String name_skill_2_1;
-
-  @NotNull
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_2_1")
-  private String detail_skill_2_1;
-
-  //============== Skill 2.2 (ถ้ามี) =======================
-  @Column(name = "IMG_SKILL_2_2")
-  private String img_skill_2_2;
-
-  @Column(name = "NAME_SKILL_2_2")
-  private String name_skill_2_2;
-
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_2_2")
-  private String detail_skill_2_2;
-
-  //============== Skill 3.1  ============================
-  @NotNull
-  @Column(name = "IMG_SKILL_3_1")
-  private String img_skill_3_1;
-
-  @NotNull
-  @Column(name = "NAME_SKILL_3_1")
-  private String name_skill_3_1;
-
-  @NotNull
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_3_1")
-  private String detail_skill_3_1;
-
-  //============== Skill 3.2 (ถ้ามี) =======================
-  @Column(name = "IMG_SKILL_3_2")
-  private String img_skill_3_2;
-
-  @Column(name = "NAME_SKILL_3_2")
-  private String name_skill_3_2;
-
-  @Size(min = 10, max = 1000)
-  @Column(name = "DETAIL_SKILL_3_2")
-  private String detail_skill_3_2;
-
   //==================== ประเภทฮีโร่ ========================
-  @NotNull
+  /*@NotNull
   @Column(name = "IMG_TYPE1_HEROES")
   private String img_type1_heroes;
 
@@ -142,5 +58,27 @@ public class Character {
   private String img_type2_heroes;
 
   @Column(name = "TPYE2_HEROES")
-  private String type2_heroes;
+  private String type2_heroes;*/
+
+  /*@OneToMany(fetch = FetchType.EAGER)
+  private Collection<Skill> skill;*/
+
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = TypeHeroes.class)
+  @JoinColumn(name = "typeHeroes_id", insertable = true)
+  @NotNull
+  private List<TypeHeroes> types = new ArrayList<>();
+
+  public void addTypeHero(TypeHeroes type) {
+    this.types.add(type);
+  }
+
+  /*@OneToMany(fetch = FetchType.EAGER, targetEntity = Skill.class)
+  @JoinColumn(name = "skill_id", insertable = true)
+  @NotNull
+  private List<Skill> skills = new ArrayList<>();
+
+  public void addSkill(Skill skill) {
+    this.skills.add(skill);
+  }*/
+
 }
