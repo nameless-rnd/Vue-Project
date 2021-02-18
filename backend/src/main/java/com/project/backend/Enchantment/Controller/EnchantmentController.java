@@ -3,9 +3,6 @@ package com.project.backend.Enchantment.Controller;
 import com.project.backend.Enchantment.Entity.Enchantment;
 import com.project.backend.Enchantment.Repository.EnchantmentRepository ;
 
-import com.project.backend.Enchantment.Entity.LevelEn;
-import com.project.backend.Enchantment.Repository.LevelEnRepository;
-
 import com.project.backend.Enchantment.Entity.TypeEn;
 import com.project.backend.Enchantment.Repository.TypeEnRepository;
 
@@ -31,9 +28,6 @@ public class EnchantmentController {
     private final EnchantmentRepository enchantmentRepository;
 
     @Autowired
-    private LevelEnRepository levelEnRepository;
-
-    @Autowired
     private TypeEnRepository typeEnRepository;
 
     public EnchantmentController(EnchantmentRepository enchantmentRepository) {
@@ -44,6 +38,5 @@ public class EnchantmentController {
     public Collection<Enchantment> Enchantment() {
         return enchantmentRepository.findAll().stream().collect(Collectors.toList());
     }
-
 
 }

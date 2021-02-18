@@ -7,13 +7,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,9 +43,8 @@ public class Skill {
   private String detail_skill;
 
 
-  @ManyToOne(fetch = FetchType.EAGER, targetEntity = Character.class)
-  @JoinColumn(name = "CHARACTER_ID", insertable = true)
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = Character.class)
   @NotNull
-  private Character character;
+  private List<Character> characters = new ArrayList<>();
 
 }

@@ -77,10 +77,6 @@ export default {
     };
   },
   props: {
-    source: {
-      type: String,
-      default: "",
-    },
     bgColor: {
       type: String,
       default: "teal",
@@ -97,7 +93,7 @@ export default {
       ){
         http
           .post(
-            "/login/" +
+            "/user/" +
               this.name +
               "/" +
               this.username +
@@ -106,7 +102,7 @@ export default {
               "/" +
               this.email +
               "/",
-            this.login
+            this.user
           );
         this.$alert("Signup Success", "Thank You", "success");
         this.$router.push("/");

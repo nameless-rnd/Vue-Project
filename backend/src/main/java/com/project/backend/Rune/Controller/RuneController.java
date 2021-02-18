@@ -3,9 +3,6 @@ package com.project.backend.Rune.Controller;
 import com.project.backend.Rune.Entity.Rune;
 import com.project.backend.Rune.Repository.RuneRepository ;
 
-import com.project.backend.Rune.Entity.Level;
-import com.project.backend.Rune.Repository.LevelRepository;
-
 import com.project.backend.Rune.Entity.TypeRune;
 import com.project.backend.Rune.Repository.TypeRuneRepository;
 
@@ -29,9 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RuneController {
     @Autowired
     private final RuneRepository runeRepository;
-
-    @Autowired
-    private LevelRepository levelRepository;
 
     @Autowired
     private TypeRuneRepository typeRuneRepository;

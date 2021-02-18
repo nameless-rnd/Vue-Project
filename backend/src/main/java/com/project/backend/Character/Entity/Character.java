@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,23 +44,6 @@ public class Character {
   @Column(name = "IMG_BIG")
   private String img_big;
 
-  //==================== ประเภทฮีโร่ ========================
-  /*@NotNull
-  @Column(name = "IMG_TYPE1_HEROES")
-  private String img_type1_heroes;
-
-  @NotNull
-  @Column(name = "TPYE1_HEROES")
-  private String type1_heroes;
-
-  @Column(name = "IMG_TYPE2_HEROES")
-  private String img_type2_heroes;
-
-  @Column(name = "TPYE2_HEROES")
-  private String type2_heroes;*/
-
-  /*@OneToMany(fetch = FetchType.EAGER)
-  private Collection<Skill> skill;*/
 
   @ManyToMany(fetch = FetchType.EAGER, targetEntity = TypeHeroes.class)
   @JoinColumn(name = "typeHeroes_id", insertable = true)
@@ -72,13 +54,13 @@ public class Character {
     this.types.add(type);
   }
 
-  /*@OneToMany(fetch = FetchType.EAGER, targetEntity = Skill.class)
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = Skill.class)
   @JoinColumn(name = "skill_id", insertable = true)
   @NotNull
   private List<Skill> skills = new ArrayList<>();
 
   public void addSkill(Skill skill) {
     this.skills.add(skill);
-  }*/
+  }
 
 }

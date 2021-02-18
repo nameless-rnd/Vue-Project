@@ -3,15 +3,15 @@
     <v-card-title class="text-center justify-center py-6">
       <h1 class="font-weight-bold display-3 basil--text">รูนทั้งหมด</h1>
     </v-card-title>
-    <v-card class="col-md" style="background: #455A64">
+    <v-card class="col-md" style="background: #455a64">
       <v-tabs v-model="tab" background-color="#455A64" color="white" right>
         <v-tab v-for="tabname in tabnames" :key="tabname.text">
           <v-tab-item-content>
-            <v-tab-item-title>{{tabname.text}}</v-tab-item-title>
+            <v-tab-item-title>{{ tabname.text }}</v-tab-item-title>
           </v-tab-item-content>
         </v-tab>
       </v-tabs>
-      <v-divider></v-divider>
+      <v-divider dark></v-divider>
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="tabname in tabnames" :key="tabname">
@@ -20,8 +20,12 @@
           <!-------------------- หน้า All Runes ------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'All Runes'">
-            <v-container style="background: #455A64"></v-container>
-            <div style="col: 30px; background: #455A64" v-for="(rune, index) in runes" :key="index">
+            <v-container style="background: #455a64"></v-container>
+            <div
+              style="col: 30px; background: #455a64"
+              v-for="(rune, index) in runes"
+              :key="index"
+            >
               <v-row>
                 <v-col cols="12">
                   <v-card
@@ -29,44 +33,83 @@
                     max-width="500"
                     outlined
                     justify="center"
-                    style="background: #37474F;"
+                    style="background: #37474f"
                   >
-                    <v-row>
-                      <v-list-item class="col-md-12">
-                        <v-list-item-content>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-col>
                           <v-row justify="center">
-                            <v-img :src="rune.img_rune" max-width="45"></v-img>
+                            <v-img :src="rune.img_rune" max-width="60"></v-img>
                           </v-row>
                           <v-row justify="center">
-                            <span class="font-weight-medium" :class="`red--text`">{{rune.name}}</span>
-                          </v-row>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                          <v-row style="col: 30px; margin-left: 5px;">
-                            <v-list-item-title
+                            <span
                               class="font-weight-medium"
                               :class="`red--text`"
-                            >ประเภทรูน</v-list-item-title>
+                              >{{ rune.name }}</span
+                            >
                           </v-row>
-                          <v-row style="col: 30px; margin-left: 5px;">
+                        </v-col>
+                      </v-list-item-content>
+                      <v-col>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            class="font-weight-medium"
+                            :class="`red--text`"
+                            >ประเภทรูน</v-list-item-title
+                          >
+                          <v-row style="margin-left: 0px">
                             <p
                               class="text-caption"
                               :class="`white--text`"
                               v-for="(types, index) in rune.types"
                               :key="index"
-                              style="margin-right: 15px;"
-                            >{{types.typeRune}}</p>
+                              style="margin-right: 15px"
+                            >
+                              {{ types.typeRune }}
+                            </p>
                           </v-row>
                         </v-list-item-content>
+                        <v-divider></v-divider>
                         <v-list-item-content>
                           <v-list-item-title
                             class="font-weight-medium"
                             :class="`red--text`"
-                          >เอฟเฟกต์</v-list-item-title>
-                          <p class="text-caption" :class="`white--text`">{{rune.effect}}</p>
+                            >เอฟเฟกต์</v-list-item-title
+                          >
+                          <v-row
+                            style="margin-left: 0px"
+                            v-for="(property, index) in rune.propertys"
+                            :key="index"
+                          >
+                            <p class="text-caption" :class="`white--text`">
+                              {{ property.effects.effect }} +
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-if="
+                                property.effects.effect == 'อัตราคริติคอล' ||
+                                property.effects.effect == 'ความเร็วโจมตี' ||
+                                property.effects.effect == 'ดูดเลือด' ||
+                                property.effects.effect == 'เวทแวมไพร์' ||
+                                property.effects.effect ==
+                                  'ความเสียหายคริติคอล' ||
+                                property.effects.effect == 'ลดคูลดาวน์'
+                              "
+                            >
+                              {{ property.propertyRune }}%
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-else
+                            >
+                              {{ property.propertyRune }}
+                            </p>
+                          </v-row>
                         </v-list-item-content>
-                      </v-list-item>
-                    </v-row>
+                      </v-col>
+                    </v-list-item>
                   </v-card>
                 </v-col>
               </v-row>
@@ -76,53 +119,96 @@
           <!-------------------- หน้า Level 1 --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Level 1'">
-            <v-container style="background: #455A64"></v-container>
-            <div style="col: 30px; background: #455A64" v-for="(rune, index) in runes" :key="index">
+            <v-container style="background: #455a64"></v-container>
+            <div
+              style="col: 30px; background: #455a64"
+              v-for="(rune, index) in runes"
+              :key="index"
+            >
               <v-row>
-                <v-col cols="12" v-if="rune.level.level === 1">
+                <v-col cols="12" v-if="rune.level === 1">
                   <v-card
                     class="mx-auto"
                     max-width="500"
                     outlined
                     justify="center"
-                    style="background: #37474F;"
+                    style="background: #37474f"
                   >
-                    <v-row>
-                      <v-list-item class="col-md-12">
-                        <v-list-item-content>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-col>
                           <v-row justify="center">
-                            <v-img :src="rune.img_rune" max-width="45"></v-img>
+                            <v-img :src="rune.img_rune" max-width="60"></v-img>
                           </v-row>
                           <v-row justify="center">
-                            <span class="font-weight-medium" :class="`red--text`">{{rune.name}}</span>
-                          </v-row>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                          <v-row style="col: 30px; margin-left: 5px;">
-                            <v-list-item-title
+                            <span
                               class="font-weight-medium"
                               :class="`red--text`"
-                            >ประเภทรูน</v-list-item-title>
+                              >{{ rune.name }}</span
+                            >
                           </v-row>
-                          <v-row style="col: 30px; margin-left: 5px;">
+                        </v-col>
+                      </v-list-item-content>
+                      <v-col>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            class="font-weight-medium"
+                            :class="`red--text`"
+                            >ประเภทรูน</v-list-item-title
+                          >
+                          <v-row style="margin-left: 0px">
                             <p
                               class="text-caption"
                               :class="`white--text`"
                               v-for="(types, index) in rune.types"
                               :key="index"
-                              style="margin-right: 15px;"
-                            >{{types.typeRune}}</p>
+                              style="margin-right: 15px"
+                            >
+                              {{ types.typeRune }}
+                            </p>
                           </v-row>
                         </v-list-item-content>
+                        <v-divider></v-divider>
                         <v-list-item-content>
                           <v-list-item-title
                             class="font-weight-medium"
                             :class="`red--text`"
-                          >เอฟเฟกต์</v-list-item-title>
-                          <p class="text-caption" :class="`white--text`">{{rune.effect}}</p>
+                            >เอฟเฟกต์</v-list-item-title
+                          >
+                          <v-row
+                            style="margin-left: 0px"
+                            v-for="(property, index) in rune.propertys"
+                            :key="index"
+                          >
+                            <p class="text-caption" :class="`white--text`">
+                              {{ property.effects.effect }} +
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-if="
+                                property.effects.effect == 'อัตราคริติคอล' ||
+                                property.effects.effect == 'ความเร็วโจมตี' ||
+                                property.effects.effect == 'ดูดเลือด' ||
+                                property.effects.effect == 'เวทแวมไพร์' ||
+                                property.effects.effect ==
+                                  'ความเสียหายคริติคอล' ||
+                                property.effects.effect == 'ลดคูลดาวน์'
+                              "
+                            >
+                              {{ property.propertyRune }}%
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-else
+                            >
+                              {{ property.propertyRune }}
+                            </p>
+                          </v-row>
                         </v-list-item-content>
-                      </v-list-item>
-                    </v-row>
+                      </v-col>
+                    </v-list-item>
                   </v-card>
                 </v-col>
               </v-row>
@@ -132,53 +218,96 @@
           <!-------------------- หน้า Level 2 --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Level 2'">
-            <v-container style="background: #455A64"></v-container>
-            <div style="col: 30px; background: #455A64" v-for="(rune, index) in runes" :key="index">
+            <v-container style="background: #455a64"></v-container>
+            <div
+              style="col: 30px; background: #455a64"
+              v-for="(rune, index) in runes"
+              :key="index"
+            >
               <v-row>
-                <v-col cols="12" v-if="rune.level.level === 2">
+                <v-col cols="12" v-if="rune.level === 2">
                   <v-card
                     class="mx-auto"
                     max-width="500"
                     outlined
                     justify="center"
-                    style="background: #37474F;"
+                    style="background: #37474f"
                   >
-                    <v-row>
-                      <v-list-item class="col-md-12">
-                        <v-list-item-content>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-col>
                           <v-row justify="center">
-                            <v-img :src="rune.img_rune" max-width="45"></v-img>
+                            <v-img :src="rune.img_rune" max-width="60"></v-img>
                           </v-row>
                           <v-row justify="center">
-                            <span class="font-weight-medium" :class="`red--text`">{{rune.name}}</span>
-                          </v-row>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                          <v-row style="col: 30px; margin-left: 5px;">
-                            <v-list-item-title
+                            <span
                               class="font-weight-medium"
                               :class="`red--text`"
-                            >ประเภทรูน</v-list-item-title>
+                              >{{ rune.name }}</span
+                            >
                           </v-row>
-                          <v-row style="col: 30px; margin-left: 5px;">
+                        </v-col>
+                      </v-list-item-content>
+                      <v-col>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            class="font-weight-medium"
+                            :class="`red--text`"
+                            >ประเภทรูน</v-list-item-title
+                          >
+                          <v-row style="margin-left: 0px">
                             <p
                               class="text-caption"
                               :class="`white--text`"
                               v-for="(types, index) in rune.types"
                               :key="index"
-                              style="margin-right: 15px;"
-                            >{{types.typeRune}}</p>
+                              style="margin-right: 15px"
+                            >
+                              {{ types.typeRune }}
+                            </p>
                           </v-row>
                         </v-list-item-content>
+                        <v-divider></v-divider>
                         <v-list-item-content>
                           <v-list-item-title
                             class="font-weight-medium"
                             :class="`red--text`"
-                          >เอฟเฟกต์</v-list-item-title>
-                          <p class="text-caption" :class="`white--text`">{{rune.effect}}</p>
+                            >เอฟเฟกต์</v-list-item-title
+                          >
+                          <v-row
+                            style="margin-left: 0px"
+                            v-for="(property, index) in rune.propertys"
+                            :key="index"
+                          >
+                            <p class="text-caption" :class="`white--text`">
+                              {{ property.effects.effect }} +
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-if="
+                                property.effects.effect == 'อัตราคริติคอล' ||
+                                property.effects.effect == 'ความเร็วโจมตี' ||
+                                property.effects.effect == 'ดูดเลือด' ||
+                                property.effects.effect == 'เวทแวมไพร์' ||
+                                property.effects.effect ==
+                                  'ความเสียหายคริติคอล' ||
+                                property.effects.effect == 'ลดคูลดาวน์'
+                              "
+                            >
+                              {{ property.propertyRune }}%
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-else
+                            >
+                              {{ property.propertyRune }}
+                            </p>
+                          </v-row>
                         </v-list-item-content>
-                      </v-list-item>
-                    </v-row>
+                      </v-col>
+                    </v-list-item>
                   </v-card>
                 </v-col>
               </v-row>
@@ -188,53 +317,96 @@
           <!----------------------- หน้า Level 3 --------------------------------------->
           <!------------------------------------------------------------------------>
           <v-flex transparent-body v-if="tabname.text === 'Level 3'">
-            <v-container style="background: #455A64"></v-container>
-            <div style="col: 30px; background: #455A64" v-for="(rune, index) in runes" :key="index">
+            <v-container style="background: #455a64"></v-container>
+            <div
+              style="col: 30px; background: #455a64"
+              v-for="(rune, index) in runes"
+              :key="index"
+            >
               <v-row>
-                <v-col cols="12" v-if="rune.level.level === 3">
+                <v-col cols="12" v-if="rune.level === 3">
                   <v-card
                     class="mx-auto"
                     max-width="500"
                     outlined
                     justify="center"
-                    style="background: #37474F;"
+                    style="background: #37474f"
                   >
-                    <v-row>
-                      <v-list-item class="col-md-12">
-                        <v-list-item-content>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-col>
                           <v-row justify="center">
-                            <v-img :src="rune.img_rune" max-width="45"></v-img>
+                            <v-img :src="rune.img_rune" max-width="60"></v-img>
                           </v-row>
                           <v-row justify="center">
-                            <span class="font-weight-medium" :class="`red--text`">{{rune.name}}</span>
-                          </v-row>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                          <v-row style="col: 30px; margin-left: 5px;">
-                            <v-list-item-title
+                            <span
                               class="font-weight-medium"
                               :class="`red--text`"
-                            >ประเภทรูน</v-list-item-title>
+                              >{{ rune.name }}</span
+                            >
                           </v-row>
-                          <v-row style="col: 30px; margin-left: 5px;">
+                        </v-col>
+                      </v-list-item-content>
+                      <v-col>
+                        <v-list-item-content>
+                          <v-list-item-title
+                            class="font-weight-medium"
+                            :class="`red--text`"
+                            >ประเภทรูน</v-list-item-title
+                          >
+                          <v-row style="margin-left: 0px">
                             <p
                               class="text-caption"
                               :class="`white--text`"
                               v-for="(types, index) in rune.types"
                               :key="index"
-                              style="margin-right: 15px;"
-                            >{{types.typeRune}}</p>
+                              style="margin-right: 15px"
+                            >
+                              {{ types.typeRune }}
+                            </p>
                           </v-row>
                         </v-list-item-content>
+                        <v-divider></v-divider>
                         <v-list-item-content>
                           <v-list-item-title
                             class="font-weight-medium"
                             :class="`red--text`"
-                          >เอฟเฟกต์</v-list-item-title>
-                          <p class="text-caption" :class="`white--text`">{{rune.effect}}</p>
+                            >เอฟเฟกต์</v-list-item-title
+                          >
+                          <v-row
+                            style="margin-left: 0px"
+                            v-for="(property, index) in rune.propertys"
+                            :key="index"
+                          >
+                            <p class="text-caption" :class="`white--text`">
+                              {{ property.effects.effect }} +
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-if="
+                                property.effects.effect == 'อัตราคริติคอล' ||
+                                property.effects.effect == 'ความเร็วโจมตี' ||
+                                property.effects.effect == 'ดูดเลือด' ||
+                                property.effects.effect == 'เวทแวมไพร์' ||
+                                property.effects.effect ==
+                                  'ความเสียหายคริติคอล' ||
+                                property.effects.effect == 'ลดคูลดาวน์'
+                              "
+                            >
+                              {{ property.propertyRune }}%
+                            </p>
+                            <p
+                              class="text-caption"
+                              :class="`white--text`"
+                              v-else
+                            >
+                              {{ property.propertyRune }}
+                            </p>
+                          </v-row>
                         </v-list-item-content>
-                      </v-list-item>
-                    </v-row>
+                      </v-col>
+                    </v-list-item>
                   </v-card>
                 </v-col>
               </v-row>

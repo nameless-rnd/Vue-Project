@@ -28,9 +28,9 @@ public class TypeHeroes {
   @Column(name = "TypeHeroes_id", unique = true, nullable = true)
   private Long id;
 
-  /*@NotNull
+  @NotNull
   @Column(name = "IMG_TYPE_HEROES")
-  private String img_typeHeroes;*/
+  private String img_typeHeroes;
 
   @NotNull
   @Column(name = "TYPE_HEROES")

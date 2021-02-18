@@ -39,14 +39,14 @@ public class Enchantment {
   @Size(min = 10, max = 1000)
   @Column(name = "detail")
   private String detail;
+  
+  @NotNull
+  @Column(name = "LEVEL_EN")
+  private Integer levelEn;
 
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeEn.class)
   @JoinColumn(name = "TYPE_EN", insertable = true)
   @NotNull
   private TypeEn typeEn;
-
-  @ManyToOne(fetch = FetchType.EAGER, targetEntity = LevelEn.class)
-  @JoinColumn(name = "LEVEL_EN", insertable = true)
-  @NotNull
-  private LevelEn levelEn;
+  
 }

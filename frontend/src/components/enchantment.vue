@@ -14,7 +14,7 @@
           </v-tab-item-content>
         </v-tab>
       </v-tabs>
-      <v-divider></v-divider>
+      <v-divider dark></v-divider>
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="tabname in tabnames" :key="tabname">
@@ -40,7 +40,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 1 && enchantment.typeEn.typeEn === 'Afata'"
+                          v-if="enchantment.levelEn === 1 && enchantment.typeEn.typeEn === 'Afata'"
                         >
                           <v-card
                             class="mx-auto"
@@ -53,7 +53,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -93,7 +93,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 2 && enchantment.typeEn.typeEn === 'Afata'"
+                          v-if="enchantment.levelEn === 2 && enchantment.typeEn.typeEn === 'Afata'"
                         >
                           <v-card
                             class="mx-auto"
@@ -106,7 +106,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -146,7 +146,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 3 && enchantment.typeEn.typeEn === 'Afata'"
+                          v-if="enchantment.levelEn === 3 && enchantment.typeEn.typeEn === 'Afata'"
                         >
                           <v-card
                             class="mx-auto"
@@ -159,7 +159,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -211,7 +211,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 1 && enchantment.typeEn.typeEn === 'Human'"
+                          v-if="enchantment.levelEn === 1 && enchantment.typeEn.typeEn === 'Human'"
                         >
                           <v-card
                             class="mx-auto"
@@ -224,7 +224,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -264,7 +264,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 2 && enchantment.typeEn.typeEn === 'Human'"
+                          v-if="enchantment.levelEn === 2 && enchantment.typeEn.typeEn === 'Human'"
                         >
                           <v-card
                             class="mx-auto"
@@ -277,7 +277,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -317,7 +317,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 3 && enchantment.typeEn.typeEn === 'Human'"
+                          v-if="enchantment.levelEn === 3 && enchantment.typeEn.typeEn === 'Human'"
                         >
                           <v-card
                             class="mx-auto"
@@ -330,7 +330,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -382,7 +382,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 1 && enchantment.typeEn.typeEn === 'Lokheim'"
+                          v-if="enchantment.levelEn === 1 && enchantment.typeEn.typeEn === 'Lokheim'"
                         >
                           <v-card
                             class="mx-auto"
@@ -395,7 +395,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -435,7 +435,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 2 && enchantment.typeEn.typeEn === 'Lokheim'"
+                          v-if="enchantment.levelEn === 2 && enchantment.typeEn.typeEn === 'Lokheim'"
                         >
                           <v-card
                             class="mx-auto"
@@ -448,7 +448,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -488,7 +488,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 3 && enchantment.typeEn.typeEn === 'Lokheim'"
+                          v-if="enchantment.levelEn === 3 && enchantment.typeEn.typeEn === 'Lokheim'"
                         >
                           <v-card
                             class="mx-auto"
@@ -501,7 +501,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -553,7 +553,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 1 && enchantment.typeEn.typeEn === 'Veda'"
+                          v-if="enchantment.levelEn === 1 && enchantment.typeEn.typeEn === 'Veda'"
                         >
                           <v-card
                             class="mx-auto"
@@ -566,7 +566,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -606,7 +606,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 2 && enchantment.typeEn.typeEn === 'Veda'"
+                          v-if="enchantment.levelEn === 2 && enchantment.typeEn.typeEn === 'Veda'"
                         >
                           <v-card
                             class="mx-auto"
@@ -619,7 +619,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span
@@ -659,7 +659,7 @@
                       <v-row>
                         <v-col
                           cols="12"
-                          v-if="enchantment.levelEn.levelEn === 3 && enchantment.typeEn.typeEn === 'Veda'"
+                          v-if="enchantment.levelEn === 3 && enchantment.typeEn.typeEn === 'Veda'"
                         >
                           <v-card
                             class="mx-auto"
@@ -672,7 +672,7 @@
                               <v-list-item class="col-md-12">
                                 <v-list-item-content>
                                   <v-row justify="center">
-                                    <v-img :src="enchantment.image" max-width="50"></v-img>
+                                    <v-img :src="enchantment.image" max-width="60"></v-img>
                                   </v-row>
                                   <v-row justify="center">
                                     <span

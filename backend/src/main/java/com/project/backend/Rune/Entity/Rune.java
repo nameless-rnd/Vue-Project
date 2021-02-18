@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotNull;
 import lombok.*;
 
@@ -39,13 +40,8 @@ public class Rune {
   private String img_rune;
 
   @NotNull
-  @Column(name = "EFFECT")
-  private String effect;
-
-  @ManyToOne(fetch = FetchType.EAGER, targetEntity = Level.class)
-  @JoinColumn(name = "LEVEL", insertable = true)
-  @NotNull
-  private Level level;
+  @Column(name = "LEVEL")
+  private Integer level;
 
   @ManyToMany(fetch = FetchType.EAGER, targetEntity = TypeRune.class)
   @JoinColumn(name = "typeRune_id", insertable = true)
@@ -55,4 +51,14 @@ public class Rune {
   public void addType(TypeRune type) {
     this.types.add(type);
   }
+  
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = PropertyRune.class)
+  @JoinColumn(name = "PropertyRune_id", insertable = true)
+  @NotNull
+  private List<PropertyRune> propertys = new ArrayList<>();
+
+  public void addProperty(PropertyRune property) {
+    this.propertys.add(property);
+  }
+
 }

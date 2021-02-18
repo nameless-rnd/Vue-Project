@@ -1,6 +1,7 @@
 <template>
   <v-app app style="background: #222222" class="overflow-hidden">
-      <v-app-bar
+      <v-card>
+        <v-app-bar
         app
         absolute
         dark
@@ -17,12 +18,14 @@
         <v-spacer></v-spacer>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
+      </v-card>
+      
     <v-card>
-      <v-navigation-drawer v-model="drawer" absolute temporary app right src="..\public\img1.jpg">
+      <v-navigation-drawer v-model="drawer" absolute temporary app right src="..\public\img3.jpg">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
-              class="application text-center"
+              class="application text-center white--text"
               style="margin-right: 15px;"
               v-if="login()"
             >{{name}}</v-list-item-title>
@@ -41,10 +44,11 @@
               <v-img :src="link.avatar"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>{{link.text}}</v-list-item-title>
+              <v-list-item-title class=" white--text">{{link.text}}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
+        
         <template v-slot:append>
           <div class="text-center pa-2">
             <v-btn
@@ -87,11 +91,11 @@ export default {
       links: [
         { avatar: "..\\home.png", text: "HOME", route: "/home" },
         { avatar: "..\\hero.png", text: "HEROES", route: "/characterList" },
-        { avatar: "..\\rune.png", text: "RUNE", route: "/rune" },
+        { text: "SKIN",  route: "/skinList" },
         { avatar: "..\\enchanment.png", text: "ENCHANTMENT", route: "/enchantment"},
         { avatar: "..\\item.png", text: "ITEM", route: "/item" },
-        { avatar: "..\\mode.png", text: "MODE",  route: "/mode" },
-        { text: "SKIN",  route: "/SKIN" },
+        { avatar: "..\\mode.png", text: "MODE",  route: "/modeList" },
+        { avatar: "..\\rune.png", text: "RUNE", route: "/rune" },
       ],
     };
   },
@@ -128,5 +132,4 @@ export default {
 .basil--text {
   color: #356859 !important;
 }
-
 </style>

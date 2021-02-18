@@ -85,7 +85,7 @@ export default {
   methods: {
     Check() {
       http
-        .get("/login/" + this.username + "/" + this.password)
+        .get("/user/" + this.username + "/" + this.password)
         .then((response) => {
           if (response.data[0] != null) {
             localStorage.setItem("Name", response.data[0].name);
@@ -95,7 +95,7 @@ export default {
               "Welcome",
               "success"
             )
-            this.$router.push("/menu");
+            this.$router.push("/home");
           }else {
             this.$alert(
               "Username or Password Incorrect",
